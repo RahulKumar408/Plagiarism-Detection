@@ -6,14 +6,8 @@ from utils import *
 import pandas as pd
 from flask_cors import CORS
 
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Set TensorFlow logging level to suppress messages
-
-import tensorflow as tf
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)  # Suppress TensorFlow logging messages
-
-
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, template_folder='./public_html', static_folder='public_html/static')
 CORS(app)
 
 # home route

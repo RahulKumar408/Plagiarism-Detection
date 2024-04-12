@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+RASADA | Home
+{% endblock %}
+
+{% block navbar %}
+
+
+{% endblock %}
+{% include "navbar.html" %}
+{% block body %}
+<header>
+    <h1>Academic Plagiarism Checker</h1>
+</header>
+
+<main>
+    <form id="fileForm" action="/process" method="post" enctype="multipart/form-data">
+        <p>Welcome to our Academic Plagiarism Checker. Ensure the integrity of your academic work by checking for
+            plagiarism.</p>
+        <h1>File Processing App</h1>
+        <input type="file" id="fileInput" name="file" accept=".pdf, .zip" required onchange="updateButtonState()">
+        <button type="button" id="processButton" onclick="processFile()" disabled>Process File</button>
+    </form>
+
+    <div id="loading" style="display: none;">
+        <div>Loading...</div>
+        <div>
+            <span class="placeholder col-6"></span>
+            <span class="placeholder col-6 my-2"></span>
+            <span class="placeholder w-75 my-2"></span>
+            <span class="placeholder my-2" style="width: 50%;"></span>
+        </div>
+    </div>
+
+    <div id="resultContainer" class="resultbox" style="display:none;">
+        <h2>Result:</h2>
+        <div id="pdfResult">
+            <div ><b>Label : </b><span id="pdfResultLabel"></span></div>
+            <div ><b>Score : </b><span id="pdfResultScore"></span></div>
+        </div>
+        <div id="zipResult" style="display: none;">
+            <table id="zipResultTable" style="margin-top: 10px; border-collapse: collapse; width: 100%;">
+                <!-- Table for displaying PDF names and results for ZIP files will be dynamically generated here -->
+            </table>
+            <button onclick="downloadCSV()">Download CSV</button>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
